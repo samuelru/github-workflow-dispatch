@@ -3,22 +3,27 @@ name: Deploy to Docker Hub
 on:
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
-  deploy:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Build and Push Docker Image
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
           push: true
-          tags: samuelrunggaldier/github-workflow-dispatch:${{ github.sha }}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          tags: samuelrunggaldier/github-workflow-dispatch:latest
