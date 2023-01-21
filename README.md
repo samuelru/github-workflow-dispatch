@@ -19,7 +19,7 @@ yarn dev 1234567890
 
 This is how your production docker-compose.yml could look like.
 
-Make sure to add a strong password (avoid using this chars ?,&"{}') as docker secret GITHUB_WORKFLOW_DISPATCH_APIKEY
+⚠️Make sure to add a strong password (use only alphanumeric chars and choose a long password) as docker secret GITHUB_WORKFLOW_DISPATCH_APIKEY
 ```yaml
 version: "3.4"
 
@@ -60,5 +60,3 @@ networks:
 ```bash
 https://workflow-dispatch.mycooldomain.com?url=https://api.github.com/repos/johndoe/my-cool-project/actions/workflows/my-cool-workflow.yml/dispatches&apikey=1234567890&headers={"Accept":"application/vnd.github+json","Authorization":"Bearer ghp_22jdasflkJLFSaksadljlksdaflk"}&data={"ref":"main"}
 ```
-
-⚠️Warning: Please set the `apikey` to a random string and keep it secret. It is used to prevent unauthorized access to your Github API.
