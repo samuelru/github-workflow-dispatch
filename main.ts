@@ -4,6 +4,22 @@ import axios from "axios";
 const app = express();
 
 app.get("", async (req: Request, res: Response) => {
+  return await postToGithub(req, res);
+});
+
+app.post("", async (req: Request, res: Response) => {
+  return await postToGithub(req, res);
+});
+
+app.put("", async (req: Request, res: Response) => {
+  return await postToGithub(req, res);
+});
+
+app.patch("", async (req: Request, res: Response) => {
+  return await postToGithub(req, res);
+});
+
+async function postToGithub(req: Request, res: Response) {
   const query = req.query;
 
   const apikey = query.apikey;
@@ -43,6 +59,6 @@ app.get("", async (req: Request, res: Response) => {
   } catch (e: any) {
     return res.json({ message: e.message }).status(500);
   }
-});
+}
 
 app.listen(3000, () => console.log("API proxy listening on port 3000"));
