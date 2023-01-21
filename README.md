@@ -1,6 +1,10 @@
-# Webhook (GET) PROXY for Github Workflow Dispatch
+# Webhook PROXY (GET,POST,PUT,PATCH) to Github Workflow Dispatch (POST)
 
 This is a proxy for the Github Workflow Dispatch API. It allows you to trigger a workflow run from a webhook without using headers.
+
+## Why?
+
+Strapi does not allow you to use headers in webhooks. This is a workaround to trigger a workflow run from a webhook.
 
 ## Development
 ```bash
